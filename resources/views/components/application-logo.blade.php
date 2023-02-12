@@ -1,0 +1,1 @@
+<img src="./images/logo.png" alt="Good_foods_logo" width="100">
