@@ -2,6 +2,7 @@
 
 use App\Models\Plates;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PlateController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -20,11 +21,14 @@ Route::get('/', function () {
 });
 
 
-Route::get('/plates', function () {
-    return view('Plates', [
-        'Plates' => Plates::all()
-    ]);
-});
+Route::get('/plates', [PlateController::class, 'index']) ;
+Route::get('/plate/add', [PlateController::class, 'create']) ;
+Route::post('plates', [PlateController::class, 'store']) ;
+Route::get('plates/{id}/edit', [PlateController::class, 'edit']);
+Route::put('plates/{id}', [PlateController::class, 'update']);
+Route::delete('plates/{id}', [PlateController::class, 'destroy']);
+
+
 
 Route::get('/plate/id={id}', function($id){
     $specificPlate = Plates::find($id);
@@ -39,7 +43,9 @@ Route::get('/plate/id={id}', function($id){
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard', [
+        'Plates' => Plates::all()
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
