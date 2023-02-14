@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\User;
 use App\Models\Plates;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlateController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,7 @@ Route::get('/', function () {
     ]);
 });
 
-
+// Crud plates
 Route::get('/plates', [PlateController::class, 'index']) ;
 Route::get('/plate/add', [PlateController::class, 'create']) ;
 Route::post('plates', [PlateController::class, 'store']) ;
@@ -31,18 +33,24 @@ Route::put('plates/{id}', [PlateController::class, 'update']);
 Route::delete('plates/{id}', [PlateController::class, 'destroy']);
 
 
+// Change permission of user
+Route::put('users/{id}', [UserController::class, 'update']);
 
-Route::get('/plate/id={id}', function($id){
-    $specificPlate = Plates::find($id);
+
+
+// Route::get('/plate/id={id}', function($id){
+//     $specificPlate = Plates::find($id);
     
-    if($specificPlate){
-        return view('Plate', [
-            'Plate' => $specificPlate
-        ]);
-    } else {
-        abort(404) ;
-    }
-});
+//     if($specificPlate){
+//         return view('Plate', [
+//             'Plate' => $specificPlate
+//         ]);
+//     } else {
+//         abort(404) ;
+//     }
+// });
+
+Route::get('/superAdmin', [UserController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard', [
