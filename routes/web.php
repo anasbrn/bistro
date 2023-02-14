@@ -17,7 +17,9 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', [
+        'Plates' => Plates::all()
+    ]);
 });
 
 
