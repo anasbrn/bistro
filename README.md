@@ -3,20 +3,20 @@
 Bistro is a website of a moroccan bistro(ma7laba) that help visitors to see the plates of the bistro.
 
 
-## Features
+### Features
 
 - See plates
 - Register and login
 
 
-## Roles
+### Roles
 
 - Visitor
 - Admin
 - Super admin
 
 
-## Requirements
+### Requirements
 
 - Internet Connection
 
